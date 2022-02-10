@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "composite": true,
+        "emitDeclarationOnly": false,
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "outDir": "./public",
+        "paths": {
+            "@/*": ["/*"],
+            "@client/*": ["client/*"]
+        },
+        "rootDir": ".",
+        "target": "es5",
+    },
+    "references": [
+        {
+            "path": "client",
+        },
+        {
+            "path": "server"
+        }
+    ],
+    "files": []
+}
