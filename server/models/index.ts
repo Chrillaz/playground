@@ -27,14 +27,9 @@ const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
 
 const models = readdirSync(path.join(__dirname, '../models')).reduce((map, model) => {
 
-    if (model.includes('index')) {
+    if (model.includes('.ts')) return map;
 
-        return map;
-    }
-
-    const modelName = model.split('.').slice(0, -1).join('.');
-
-    return {...map, [modelName]: import(path.join(__dirname, '../models/' + model))};
+    return {...map, [model]: import(path.join(__dirname, `../models/${model}/${model}.model.ts`))};
 }, {});
 
 export const db: IDb = {

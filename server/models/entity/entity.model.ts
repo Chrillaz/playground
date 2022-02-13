@@ -1,5 +1,5 @@
 import { Model, STRING, UUID, UUIDV4 } from 'sequelize';
-import { db } from '.';
+import { db } from '..';
 
 export interface IEntityModel {
     id: string;
