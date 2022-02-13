@@ -18,5 +18,5 @@
         "strict": true,
         "strictNullChecks": false,
     },
-    "include": ["/**/*.ts", "/**/*.tsx"],
+    "include": ["**/*"],
 }
