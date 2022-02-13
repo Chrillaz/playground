@@ -7,7 +7,7 @@ interface IExceptionBase {
     };
 }
 
-export class EntityError implements IExceptionBase {
+export class MessageError implements IExceptionBase {
 
     status: 'error' = 'error';
     error: IExceptionBase['error'];
@@ -22,7 +22,7 @@ export class EntityError implements IExceptionBase {
     }
 }
 
-export class EntityBadRequest implements IExceptionBase {
+export class MessageBadRequest implements IExceptionBase {
 
     status: 'error' = 'error';
     error: IExceptionBase['error'];
@@ -37,7 +37,7 @@ export class EntityBadRequest implements IExceptionBase {
     }
 }
 
-export class EntityNotFound implements IExceptionBase {
+export class MessageNotFound implements IExceptionBase {
 
     status: 'error' = 'error';
     error: IExceptionBase['error'];

@@ -1,2 +1,2 @@
-export { entityRouter } from './entities';
+export { messageRouter } from './messages';
 export { staticRouter } from './static';

@@ -3,8 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import * as bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
-import { staticRouter, entityRouter } from './routes';
-import entityErrorHandler from './middleware/entityErrorHandler';
+import { staticRouter, messageRouter } from './routes';
+import messageErrorHandler from './middleware/messageErrorHandler';
 
 dotenv.config();
 
@@ -22,9 +22,9 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(cors())
 
-app.use(`/api/${apiVersion}/entities`, entityRouter());
+app.use(`/api/${apiVersion}/messages`, messageRouter());
 
-app.use(entityErrorHandler);
+app.use(messageErrorHandler);
 
 app.listen(port, () => {
   console.log(`Playground listening on port ${port}`)
