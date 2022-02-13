@@ -7,8 +7,8 @@
         "moduleResolution": "node",
         "outDir": "./public",
         "paths": {
-            "@/*": ["/*"],
-            "@client/*": ["client/*"]
+            "@/*": ["client/*"],
+            "@components": ["client/components/index.ts"]
         },
         "rootDir": ".",
         "target": "es5",

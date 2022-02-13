@@ -57,8 +57,8 @@ const config = {
     },
     resolve: {
         alias: {
-            '@': context,
-            '@client': clientDir,
+            '@': clientDir,
+            '@components': clientDir + '/components'
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },

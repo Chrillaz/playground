@@ -6,9 +6,9 @@ module.exports = {
     },
     rootDir: "../",
     moduleNameMapper: {
-        "@/(.*)$": "<rootDir>/$1",
-        "@client/(.*)$": "<rootDir>/client/$1",
-        '\\.(css|less)$': '<rootDir>/test/__mocks__/style-mock.ts',
+        "@/(.*)$": "<rootDir>/client/$1",
+        "@components": "<rootDir>/client/components/index.ts",
+        '\\.(css)$': '<rootDir>/test/__mocks__/style-mock.ts',
     },
     setupFilesAfterEnv: ["<rootDir>/test/setup.js"],
     testEnvironment: "jsdom",
