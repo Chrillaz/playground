@@ -20,6 +20,15 @@ const useStyles = makeStyles({
 	},
 });
 
+/**
+ * Whole abstraction of MUI menu
+ * 
+ * @param id string
+ * @param label string
+ * @param items Array
+ * 
+ * @link https://mui.com/components/menus/#main-content 
+ */
 export const MenuDropdown = ({ id, label, items }: IProps) => {
 
 	const classes = useStyles();

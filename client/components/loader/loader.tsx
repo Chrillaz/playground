@@ -8,6 +8,11 @@ const useStyles = makeStyles({
     }
 });
 
+/**
+ * CircularProgrss component aligned auto in flex box.
+ * 
+ * @link https://mui.com/api/circular-progress/#main-content 
+ */
 export const Loader = () => {
 
     const classes = useStyles();

@@ -6,7 +6,7 @@ import { useFormContext } from 'react-hook-form';
  * InputControl is an abstraction of MUI TextField using react-hook-form register
  * 
  * @link https://react-hook-form.com/api/useform/register
- * @link https://v4.mui.com/api/text-field
+ * @link https://mui.com/components/text-fields/#main-content
  */
 export const InputControl = ({
     name,
