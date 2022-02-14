@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { MessageBadRequest, MessageError } from '../models/message/message.exceptions';
+import { MessageBadRequest, MessageError, MessageNotFound } from '../models/message/message.exceptions';
 
 function messageErrorHandler(
     error: TypeError | MessageError | MessageBadRequest,
@@ -9,6 +9,11 @@ function messageErrorHandler(
 ) {
     
     if (error instanceof MessageBadRequest) {
+
+        return res.status(error.error.code).json(error);
+    }
+
+    if (error instanceof MessageNotFound) {
 
         return res.status(error.error.code).json(error);
     }
