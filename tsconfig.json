@@ -11,7 +11,7 @@
             "@components": ["client/components/index.ts"]
         },
         "rootDir": ".",
-        "target": "es5",
+        "target": "es6",
     },
     "references": [
         {
