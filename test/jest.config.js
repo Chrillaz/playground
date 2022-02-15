@@ -13,6 +13,7 @@ module.exports = {
     setupFilesAfterEnv: ["<rootDir>/test/setup.js"],
     testEnvironment: "jsdom",
     testMatch: ["<rootDir>/client/**/*.test.+(ts|tsx)"],
+    testURL: 'http://localhost:3000',
     transform: {
         ".*\\.(ts|tsx)$": "ts-jest",
     },
