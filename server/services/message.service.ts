@@ -9,7 +9,7 @@ export class MessageService {
 
     async getAll(): Promise<Message[]> {
 
-        return await Message.findAll() || [];
+        return await Message.findAll({ order: [['updatedAt', 'ASC']]}) || [];
     }
 
     async getById(id: string): Promise<Message> {
