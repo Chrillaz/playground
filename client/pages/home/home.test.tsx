@@ -1,74 +1,68 @@
-import React from 'react';
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import Home from '.'
-import { ThemeProvider } from '@mui/styles';
-import { createTheme, Theme } from '@mui/material';
-import { act } from 'react-dom/test-utils';
+import { createTheme, Theme } from "@mui/material";
+import { ThemeProvider } from "@mui/styles";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import axios, { AxiosStatic } from 'axios';
+import React from "react";
+import { act } from "react-dom/test-utils";
+import Home from ".";
 
-describe('<Home />', () => {
+describe("<Home />", () => {
 
-    const theme = {
-        palette: {
-            mode: 'dark'
-        }
-    } as Theme;
+	const theme = {
+		palette: {
+			mode: "dark",
+		},
+	} as Theme;
 
-    const mockMessage = { id: 'some-id', message: 'Hello World'};
+	const mockMessage = { id: "some-id", message: "Hello World" };
 
-    jest.mock('@/services/messages', () => ({
-        getAll: () => jest.fn()
-            .mockResolvedValueOnce([])
-            .mockResolvedValueOnce([mockMessage]),
-        getById: () => jest.fn().mockResolvedValueOnce(mockMessage),
-        create: () => jest.fn().mockResolvedValueOnce(mockMessage),
-    }))
+    jest.mock('axios');
 
-    jest.mock('@/services/api', () => ({
-        get: jest.fn(),
-        post: jest.fn()
-    }))
-
-    beforeEach(() => jest.resetAllMocks);
-
-    it('Renders with Submit a message.', () => {
-
-        render(
-            <ThemeProvider theme={createTheme(theme)}>
-                <Home />
-            </ThemeProvider>
-        );
-
-        expect(screen.getByText('Submit a message.')).toBeInTheDocument
-    })
-
-    it('Can post a message', () => {
-
-        render(
-            <ThemeProvider theme={createTheme(theme)}>
-                <Home />
-            </ThemeProvider>
-        );
-
-        const message = 'Hello World';
-
-        const textArea = screen.getByPlaceholderText('What is on your mind?');
-
-        const submit = screen.getByRole('button');
-
-        expect(textArea).toBeInTheDocument;
-
-        expect(submit).toBeInTheDocument;
+    const mockGet = jest.spyOn<AxiosStatic, 'get'>(axios, 'get');
+    const mockPost = jest.spyOn<AxiosStatic, 'post'>(axios, 'post');
         
-        textArea.setAttribute('value', message);
+    mockGet.mockResolvedValueOnce({ data: [] });
+    mockPost.mockResolvedValueOnce({ data: [mockMessage]});
 
-        act(() => {
+	beforeEach(() => jest.resetAllMocks);
 
-            fireEvent.click(submit);
-        })
+	it('Renders', async () => {
 
-        waitFor(() => {
+		render(
+			<ThemeProvider theme={createTheme(theme)}>
+				<Home />
+			</ThemeProvider>
+		);
 
-            expect(screen.getByText(message)).toBeInTheDocument;
-        })
-    })
-})
+		expect(screen.getByText("Submit a message.")).toBeInTheDocument;
+	});
+
+	it('Can post a message', async () => {
+
+        const message = "Hello World";
+
+		render(
+			<ThemeProvider theme={createTheme(theme)}>
+				<Home />
+			</ThemeProvider>
+		);
+
+		const textArea = screen.getByPlaceholderText("What is on your mind?");
+
+		const submit = screen.getByRole("button");
+
+		expect(textArea).toBeInTheDocument;
+
+		expect(submit).toBeInTheDocument;
+
+		textArea.setAttribute("value", message);
+
+		act(() => {
+			fireEvent.click(submit);
+		});
+
+		waitFor(() => {
+			expect(screen.getByText(message)).toBeInTheDocument;
+		});
+	});
+});
