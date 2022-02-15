@@ -1,13 +1,18 @@
-import React, { useRef } from "react";
-import { makeStyles } from "@mui/styles";
-import { Theme } from "@mui/material";
-import { useMessages } from "@/hooks/useMessages";
-import { InputControl, MessageAppender, MessageItem, MessageList } from "@/components";
+import {
+	InputControl,
+	MessageAppender,
+	MessageItem,
+	MessageList,
+} from "@/components";
 import {
 	HookFormDialog,
 	HookFormDialogRef,
 } from "@/components/hook-form-dialog/hook-form-dialog";
+import { useMessages } from "@/hooks/useMessages";
 import { IMessage } from "@/services/messages";
+import { Theme } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+import React, { useRef } from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
 	root: {
@@ -39,22 +44,29 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 function Home() {
-
 	const classes = useStyles();
 
-	const { messages, addMessage, removeMessage, updateMessage } = useMessages();
+	const { messages, addMessage, removeMessage, updateMessage } =
+		useMessages();
 
 	const formRef = useRef<HookFormDialogRef | null>(null);
 
 	const handleEdit = (message: IMessage) => {
-
 		return formRef.current.open({
 			title: "Edit message",
-			content: <InputControl name="message" defaultValue={message.message} multiline fullWidth />,
-			submitAction: (values) => updateMessage({
-                ...message,
-                ...values
-            })
+			content: (
+				<InputControl
+					name="message"
+					defaultValue={message.message}
+					multiline
+					fullWidth
+				/>
+			),
+			submitAction: (values) =>
+				updateMessage({
+					...message,
+					...values,
+				}),
 		});
 	};
 
@@ -67,11 +79,11 @@ function Home() {
 			<aside className={classes.aside}>
 				<MessageList messages={messages}>
 					{(message) => (
-						<MessageItem 
-                            message={message} 
-                            onEdit={handleEdit}
-                            onDelete={removeMessage}
-                        >
+						<MessageItem
+							message={message}
+							onEdit={handleEdit}
+							onDelete={removeMessage}
+						>
 							{message.message}
 						</MessageItem>
 					)}
