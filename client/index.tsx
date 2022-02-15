@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "@/router";
-import { createTheme, CssBaseline } from "@mui/material";
+import { createTheme, CssBaseline, Theme } from "@mui/material";
 import { makeStyles, ThemeProvider } from "@mui/styles";
 
 const useStyles = makeStyles({
@@ -15,13 +15,19 @@ const useStyles = makeStyles({
 	},
 });
 
+const theme = {
+	palette: {
+		mode: "dark",
+	},
+} as Theme;
+
 function App() {
 	const classes = useStyles();
 
 	return (
 		<Fragment>
 			<CssBaseline />
-			<ThemeProvider theme={createTheme({palette: {mode: 'dark'}})}>
+			<ThemeProvider theme={createTheme(theme)}>
 				<div className={classes.root}>
 					<BrowserRouter>
 						<Router />
