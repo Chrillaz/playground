@@ -44,6 +44,7 @@ export const MessageAppender: FC<IProps> = ({ onSubmit }) => {
 					name="message"
 					variant="outlined"
 					size="small"
+                    placeholder="What is on your mind?"
 					InputProps={{
 						className: classes.multilineColor,
 					}}
