@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { MessageBadRequest } from '../models/message/message.exceptions';
+import { MessageBadRequest, MessageNotFound } from '../models/message/message.exceptions';
 import { MessageService } from '../services/message.service';
 import { validUUID } from '../utils/validators';
 
@@ -26,7 +26,7 @@ export const messageRouter = () => {
 
             if (!validUUID(req.params.id)) {
 
-                throw new MessageBadRequest('Not valid.');
+                throw new MessageNotFound('Nothing here.');
             }
             
             const message = await messageService.getById(req.params.id);
