@@ -1,4 +1,5 @@
 import { Message, IMessageModel } from '../models/message/message.model';
+import { MessageNotFound } from '../models/message/message.exceptions';
 
 export class MessageService {
 
@@ -14,9 +15,16 @@ export class MessageService {
 
     async getById(id: string): Promise<Message> {
 
-        return await Message.findByPk(id, {
+        const message = await Message.findByPk(id, {
             attributes: MessageService.messageAttributes
         });
+
+        if (message == null) {
+
+            throw new MessageNotFound('Nothing here.');
+        }
+
+        return message;
     }
 
     async create(payload: Partial<IMessageModel>): Promise<Message> {
