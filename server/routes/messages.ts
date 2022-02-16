@@ -26,7 +26,7 @@ export const messageRouter = () => {
 
             if (!validUUID(req.params.id)) {
 
-                throw new MessageNotFound('Nothing here.');
+                throw new MessageBadRequest('Not valid.');
             }
             
             const message = await messageService.getById(req.params.id);
