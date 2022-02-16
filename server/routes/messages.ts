@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { MessageBadRequest, MessageNotFound } from '../models/message/message.exceptions';
+import { MessageBadRequest } from '../models/message/message.exceptions';
 import { MessageService } from '../services/message.service';
 import { validUUID } from '../utils/validators';
 
