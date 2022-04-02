@@ -4,7 +4,8 @@ const nodemonConfig = require('./nodemon.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-require('dotenv').config();
+const webpack = require('webpack');
+const dotenv = require('dotenv').config();
 
 const development = process.env.NODE_ENV !== 'production';
 
@@ -27,6 +28,19 @@ const entries = () => fs.readdirSync(`${clientDir}/pages`).reduce((chunks, entry
     index: `${clientDir}/index.tsx`
 })
 
+const appEnvs = Object.keys(dotenv.parsed).reduce((map, key) => {
+
+    if (key.substring(0, 4).toLowerCase() !== 'app_') {
+
+        return map;
+    }
+
+    return {
+        ...map,
+        [`process.env.${key}`]: JSON.stringify(dotenv.parsed[key])
+    }
+}, {})
+
 const plugins = [
     development && new NodemonPlugin({
         ...nodemonConfig,
@@ -42,7 +56,8 @@ const plugins = [
         chunks: ['index'],
         inject: 'body',
         template: publicDir + '/views/index.html',
-    })
+    }),
+    new webpack.DefinePlugin(appEnvs)
 ].filter(Boolean)
 
 const config = {

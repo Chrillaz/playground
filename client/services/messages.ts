@@ -1,3 +1,4 @@
+import { fetchHandler } from '@/utilities';
 import { api } from './api';
 
 export interface IMessage {
@@ -9,55 +10,60 @@ const service = 'messages';
 
 export const getAll = async (): Promise<IMessage[]> => {
 
-    try {
+    const [error, messages] = await fetchHandler<IMessage[]>(api.get(service)); 
 
-        const messages = await api.get<IMessage[]>(service);
-        return messages.data;
-    } catch (err) {
-        console.log(err)
+    if ( error ) {
+
+        console.log(error);
     }
+    
+    return messages;
 }
 
 export const getById = async (id: string): Promise<IMessage> => {
 
-    try {
+    const [error, message] = await fetchHandler<IMessage>(api.get(`${service}/${id}`));
 
-        const message = await api.get<IMessage>(`${service}/${id}`);
-        return message.data;
-    } catch (err) {
-        console.log(err)
+    if ( error ) {
+
+        console.log(error);
     }
+    
+    return message;
 }
 
 export const create = async (payload: IMessage): Promise<IMessage> => {
 
-    try {
+    const [error, message] = await fetchHandler<IMessage>(api.post(service, payload));
+    
+    if ( error ) {
 
-        const message = await api.post<IMessage>(service, payload);
-        return message.data;
-    } catch (err) {
-        console.log(err)
+        console.log(error);
     }
+
+    return message;
 }
 
 export const updateById = async (payload: IMessage): Promise<IMessage> => {
 
-    try {
+    const [error, message] = await fetchHandler<IMessage>(api.put(`${service}/${payload.id}`, payload));
 
-        const message = await api.put<IMessage>(`${service}/${payload.id}`, payload);
-        return message.data;
-    } catch (err) {
-        console.log(err);
+    if ( error ) {
+
+        console.log(error);
     }
+
+    return message;
 }
 
 export const removeById = async (id: string): Promise<Boolean> => {
 
-    try {
+    const [error, removed] = await fetchHandler<Boolean>(api.delete(`${service}/${id}`));
 
-        const removed = await api.delete<Boolean>(`${service}/${id}`);
-        return removed.data;
-    } catch (err) {
-        console.log(err);
+    if ( error ) {
+
+        console.log(error);
     }
+
+    return removed;
 }
