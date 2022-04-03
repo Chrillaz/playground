@@ -1,10 +1,23 @@
 import { AxiosResponse } from "axios"
 
-export const fetchHandler = <T>(
+/**
+ * 
+ * @param promise 
+ * @param defaultError 
+ * @returns Promise [error, data]
+ */
+export const fetchHandler = async <T>(
     promise: Promise<AxiosResponse<T>>,
     defaultError: any = 'rejected'
 ): Promise<T[] | [any, T]> => {
-    return promise
-        .then(({ data }) => [undefined, data])
-        .catch((error) => Promise.resolve([error || defaultError, undefined]))
+
+    try {
+
+        const { data } = await promise;
+
+        return [undefined, data];
+    } catch (error) {
+
+        return Promise.resolve([error || defaultError, undefined])
+    }
 }
