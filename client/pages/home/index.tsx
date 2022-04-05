@@ -8,8 +8,8 @@ import {
 	HookFormDialog,
 	HookFormDialogRef,
 } from "@/components/hook-form-dialog/hook-form-dialog";
-import { useMessages } from "@/hooks/useMessages";
-import { IMessage } from "@/services/messages";
+import { useMessages } from "@/hooks/use-messages";
+import { IMessage } from "@/services/messages/messages";
 import { Theme } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useRef } from "react";
@@ -46,8 +46,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 function Home() {
 	const classes = useStyles();
 
-	const { messages, addMessage, removeMessage, updateMessage } =
-		useMessages();
+	const { messages, addMessage, removeMessage, updateMessage } = useMessages();
 
 	const formRef = useRef<HookFormDialogRef | null>(null);
 
@@ -58,6 +57,7 @@ function Home() {
 				<InputControl
 					name="message"
 					defaultValue={message.message}
+                    placeholder="edit message"
 					multiline
 					fullWidth
 				/>

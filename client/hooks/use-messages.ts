@@ -1,6 +1,6 @@
 import { useReducer, useEffect } from 'react';
-import { TMessages, messageReducer } from '@/reducers/messageReducer';
-import * as messages from '@/services/messages';
+import { TMessages, messages as messageReducer } from '@/reducers/messages';
+import * as messages from '@/services/messages/messages';
 
 interface IProvided {
     messages: TMessages;
@@ -12,6 +12,16 @@ interface IProvided {
 export const useMessages = (): IProvided => {
 
     const [state, dispatch] = useReducer(messageReducer, {});
+
+    const getMessages = async (subscribed: boolean) => {
+
+        const init = await messages.getAll();
+
+        if ( subscribed ) {
+
+            dispatch({ type: 'MESSAGES_INIT', init });
+        }
+    }
 
     const addMessage: IProvided['addMessage'] = async (message) => {
 
@@ -38,7 +48,13 @@ export const useMessages = (): IProvided => {
 
     useEffect(() => {
 
-        messages.getAll().then(init => dispatch({ type: 'MESSAGES_INIT', init }))
+        let subscribed = true;
+
+        getMessages(subscribed);
+
+        return () => {
+            subscribed = false;
+        }
     }, []);
 
     return {
