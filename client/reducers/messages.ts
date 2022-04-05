@@ -1,4 +1,4 @@
-import { IMessage } from '@/services/messages';
+import { IMessage } from '@/services/messages/messages';
 type Actions = 'MESSAGES_INIT' | 'MESSAGE_ADD' | 'MESSAGE_UPDATE' | 'MESSAGE_REMOVE';
 
 export type TMessages = Record<string, IMessage>;
@@ -9,7 +9,7 @@ export interface IAction {
     init?: IMessage[];
 }
 
-export const messageReducer = (state: TMessages, action: IAction) => {
+export const messages = (state: TMessages, action: IAction) => {
 
     const { type, payload, init } = action;
 
