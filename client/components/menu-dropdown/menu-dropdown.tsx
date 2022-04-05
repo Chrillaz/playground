@@ -7,6 +7,7 @@ import { makeStyles } from "@mui/styles";
 interface IProps {
 	id: string;
 	label: string | JSX.Element;
+    title: string;
 	items: {
 		label: string;
 		action: (...args: any[]) => unknown;
@@ -29,7 +30,7 @@ const useStyles = makeStyles({
  * 
  * @link https://mui.com/components/menus/#main-content 
  */
-export const MenuDropdown = ({ id, label, items }: IProps) => {
+export const MenuDropdown = ({ id, label, title, items }: IProps) => {
 
 	const classes = useStyles();
 
@@ -52,6 +53,8 @@ export const MenuDropdown = ({ id, label, items }: IProps) => {
 				aria-controls={open ? `${id}-menu` : undefined}
 				aria-haspopup="true"
 				aria-expanded={open ? "true" : undefined}
+                role="button"
+                title={title}
 				onClick={handleClick}
 				size="small"
 				classes={{ sizeSmall: classes.buttonRoot }}

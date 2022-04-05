@@ -1,4 +1,4 @@
-import { IMessage } from "@/services/messages";
+import { IMessage } from "@/services/messages/messages";
 import { Icon, Theme, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { FC } from "react";
@@ -52,6 +52,7 @@ export const MessageItem: FC<IProps> = ({ message, onEdit, onDelete, children })
                 <MenuDropdown 
                     id="message-actions"
                     label={<Icon>more_horiz</Icon>}
+                    title="message actions"
                     items={[
                         {
                             label: 'Edit message',

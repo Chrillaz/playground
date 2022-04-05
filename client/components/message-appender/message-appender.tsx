@@ -1,4 +1,4 @@
-import { IMessage } from "@/services/messages";
+import { IMessage } from "@/services/messages/messages";
 import { Button, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { FC } from "react";
