@@ -18,6 +18,6 @@ export const fetchHandler = async <T>(
         return [undefined, data];
     } catch (error) {
 
-        return Promise.resolve([error || defaultError, undefined])
+        return Promise.resolve<[any, T]>([error || defaultError, undefined])
     }
 }
