@@ -26,6 +26,7 @@
         "@testing-library/jest-dom": "^5.16.2",
         "@testing-library/react": "^12.1.2",
         "@testing-library/react-hooks": "^7.0.2",
+        "@testing-library/user-event": "^14.0.4",
         "@types/jest": "^27.4.0",
         "@types/jest-matchers": "^25.1.0",
         "css-loader": "^6.6.0",
