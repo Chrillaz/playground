@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect } from "react";
-import ReactDom from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import { Router } from "@/router";
 import { createTheme, CssBaseline, Theme } from "@mui/material";
 import { makeStyles, ThemeProvider } from "@mui/styles";
-import { getUser } from "./services/github";
+import React, { Fragment } from "react";
+import ReactDom from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
 const useStyles = makeStyles({
 	root: {
@@ -25,11 +24,6 @@ const theme = {
 function App() {
     
 	const classes = useStyles();
-
-    useEffect(() => {
-
-        getUser('Chrillaz')
-    })
 
 	return (
 		<Fragment>
