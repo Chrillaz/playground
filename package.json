@@ -1,41 +1,45 @@
 {
-  "name": "playground",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Chrillaz/playground.git"
-  },
-  "scripts": {
-    "client:dev": "npm run dev --workspace=client",
-    "start": "npm run client:dev",
-    "lint": "eslint --quiet .",
-    "format:check": "prettier --check",
-    "format:write": "prettier --write"
-  },
-  "author": "christoffer öhman",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Chrillaz/playground/issues"
-  },
-  "homepage": "https://github.com/Chrillaz/playground#readme",
-  "workspaces": [
-    "api",
-    "client"
-  ],
-  "devDependencies": {
-    "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.18.0",
-    "@typescript-eslint/parser": "^5.18.0",
-    "eslint": "^8.13.0",
-    "prettier": "2.6.2",
-    "ts-jest": "^27.1.4",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^4.6.3"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0"
-  }
+    "name": "playground",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "private": true,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Chrillaz/playground.git"
+    },
+    "scripts": {
+        "api:dev": "npm run dev --workspace=api",
+        "client:dev": "npm run dev --workspace=client",
+        "start": "npm run client:dev",
+        "lint": "eslint --quiet .",
+        "format:check": "prettier --check",
+        "format:write": "prettier --write"
+    },
+    "author": "christoffer öhman",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Chrillaz/playground/issues"
+    },
+    "homepage": "https://github.com/Chrillaz/playground#readme",
+    "workspaces": [
+        "api",
+        "client"
+    ],
+    "devDependencies": {
+        "@types/jest": "^27.4.1",
+        "@typescript-eslint/eslint-plugin": "^5.18.0",
+        "@typescript-eslint/parser": "^5.18.0",
+        "eslint": "^8.13.0",
+        "prettier": "2.6.2",
+        "prisma": "^3.12.0",
+        "ts-jest": "^27.1.4",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^4.6.3"
+    },
+    "dependencies": {
+        "@playground/api": "file:api",
+        "@prisma/client": "^3.12.0",
+        "dotenv": "^16.0.0"
+    }
 }

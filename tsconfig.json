@@ -1,24 +1,13 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
-        "composite": true,
-        "emitDeclarationOnly": false,
-        "esModuleInterop": true,
-        "moduleResolution": "node",
-        "outDir": "./public",
-        "paths": {
-            "@/*": ["client/*"],
-            "@components": ["client/components/index.ts"]
-        },
-        "rootDir": ".",
-        "target": "es6",
+        "allowJs": false
     },
     "references": [
         {
-            "path": "client",
+            "path": "./api"
         },
         {
-            "path": "server"
+            "path": "./client"
         }
     ],
     "files": []

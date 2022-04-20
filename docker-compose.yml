@@ -1,14 +1,14 @@
 version: '3.5'
 
 networks:
-  playground-docker:
-    name: playground-docker
+  playground-network:
+    name: playground-network
     driver: bridge
 
 services:
 
   db:
-    container_name: playground_db
+    container_name: playground_dev_db
     image: mysql:latest
     restart: always
     volumes:
@@ -19,9 +19,30 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
-      - ${DB_PORT}:${DB_PORT}
+      - ${MYSQL_PORT}:${MYSQL_PORT}
     networks:
-      - playground-docker
+      - playground-network
+
+  api:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: ./api/Dockerfile
+      args:
+        - API_PORT=${API_PORT}
+        - NODE_ENV=development
+        - MYSQL_URL=${MYSQL_URL}
+    container_name: playground_dev_api
+    restart: always
+    ports:
+      - ${API_PORT}:${API_PORT}
+    volumes:
+      - ./api/index.ts:/app/api/index.ts
+      - ./api/controllers:/app/api/controllers/
+      - ./api/routes:/app/api/routes/
+      - ./prisma:/app/prisma/
+    networks:
+      - playground-network
 
 volumes:
   mysql-playground: {}

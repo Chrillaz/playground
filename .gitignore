@@ -1,16 +1,19 @@
-.DS_Store
+# Global
 node_modules
 .env
 package-lock.json
-public/*
-!public/views/
+
+# Api
+
+# Client
+client/dist
 
 # Log files
 npm-debug.log*
 
 # Editor directories and files
+.DS_Store
 .vscode
-
 .local-chromium
 bin
 obj
