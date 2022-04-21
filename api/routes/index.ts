@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { errorHandler } from 'middleware/error.handler';
 import { healthRouter } from './health';
 import { todoRouter } from './todos';
 
@@ -15,4 +16,6 @@ export default function ( app: any, VERSION: string ) {
         `/api/${VERSION}/health`, 
         healthRouter()
     );
+
+    app.use(errorHandler);
 }
