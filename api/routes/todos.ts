@@ -1,5 +1,5 @@
-import TodoController from '@controllers/todo.controller';
-import TodoModel from '@models/todo.model';
+import TodoController from '../controllers/todo.controller';
+import TodoModel from '../models/todo.model';
 import { PrismaClient } from '@prisma/client';
 import { Router } from 'express';
 

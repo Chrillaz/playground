@@ -27,19 +27,17 @@ services:
     stdin_open: true
     build:
       context: .
-      dockerfile: ./api/Dockerfile
+      dockerfile: ./api/Dockerfile.dev
       args:
-        - API_PORT=${API_PORT}
         - NODE_ENV=development
-        - MYSQL_URL=${MYSQL_URL}
     container_name: playground_dev_api
+    env_file:
+      - .env
     restart: always
     ports:
       - ${API_PORT}:${API_PORT}
     volumes:
-      - ./api/index.ts:/app/api/index.ts
-      - ./api/controllers:/app/api/controllers/
-      - ./api/routes:/app/api/routes/
+      - ./api:/app/api/
       - ./prisma:/app/prisma/
     networks:
       - playground-network
