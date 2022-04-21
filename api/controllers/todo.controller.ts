@@ -9,7 +9,7 @@ export default class TodoController extends Controller<TodoModel> {
 
         try {
             
-            await this.validate(req, res, [
+            await this.validateRequest(req, res, [
                 body('title').isString(),
                 body('description').optional().isString()
             ]);
@@ -38,7 +38,7 @@ export default class TodoController extends Controller<TodoModel> {
 
         try {
 
-            await this.validate(req, res, [param('id').isUUID(4)]);
+            await this.validateRequest(req, res, [param('id').isUUID(4)]);
 
             const todo = await this.model.read(matchedData(req).id);
 
@@ -52,7 +52,7 @@ export default class TodoController extends Controller<TodoModel> {
 
         try {
 
-            await this.validate(req, res, [
+            await this.validateRequest(req, res, [
                 param('id').isUUID(4),
                 body('title').optional().isString(),
                 body('description').optional().isString(),
@@ -73,7 +73,7 @@ export default class TodoController extends Controller<TodoModel> {
 
         try {
 
-            await this.validate(req, res, [param('id').isUUID(4)]);
+            await this.validateRequest(req, res, [param('id').isUUID(4)]);
 
             const deleted = await this.model.delete(matchedData(req).id);
 

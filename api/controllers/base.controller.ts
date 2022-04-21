@@ -19,17 +19,20 @@ export default abstract class Controller<T> {
         return res.status(Controller.STATUS_CODES[status]).json(data);
     }
 
-    async validate (req: Request, res: Response, validations: ValidationChain[]) {
+    errorResponse (res: Response, status: keyof typeof Controller.STATUS_CODES, error: string) {
+
+        return this.jsonResponse<Record<'error' | 'message', string>>(res, status, { error: status, message: error });
+    }
+
+    async validateRequest (req: Request, res: Response, validations: ValidationChain[]) {
 
         await Promise.all(validations.map(validation => validation.run(req)));
         
         const errors = validationResult(req);
         
         if (!errors.isEmpty()) {
-            
-            res.status(Controller.STATUS_CODES['bad_request']);
 
-            throw errors.mapped() || new Error('Invalid input');
+            return this.errorResponse(res, 'bad_request', errors.mapped()?.id?.msg || 'Invalid input.');
         }
     }
 }
