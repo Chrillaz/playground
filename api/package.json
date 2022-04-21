@@ -2,9 +2,9 @@
     "name": "@playground/api",
     "version": "1.0.0",
     "description": "",
-    "main": "index.ts",
+    "main": "src/index.ts",
     "scripts": {
-        "dev": "nodemon index.ts",
+        "dev": "nodemon src/index.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -35,10 +35,12 @@
     "nodemonConfig": {
         "ignore": [
             ".git",
+            ".dockerignore",
+            "Dockerfile*",
             "node_modules"
         ],
         "watch": [
-            "./**/*.ts"
+            "src/**/*"
         ],
         "verbose": true,
         "ext": "ts",

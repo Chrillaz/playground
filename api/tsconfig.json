@@ -1,25 +1,25 @@
 {
     "extends": "../tsconfig.base.json",
     "compilerOptions": {
-        "baseUrl": "./",
+        "rootDir": "src",
+        "baseUrl": "src",
         "lib": [
             "ESNext"
         ],
         "module": "commonjs",
         "paths": {
             "@controllers/*": [
-                "./controllers/*"
+                "controllers/*"
             ],
             "@models/*": [
-                "./models/*"
+                "models/*"
             ],
             "@routes/*": [
-                "./routes/*"
+                "routes/*"
             ]
-        },
-        "rootDir": "./"
+        }
     },
-    "includes": [
-        "**/*.ts"
+    "include": [
+        "src/**/*"
     ]
 }

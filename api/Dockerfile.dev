@@ -15,7 +15,7 @@ COPY --from=wait-for-it /usr/bin/wait-for-it .
 
 COPY .entrypoint/entrypoint.sh  package*.json tsconfig*.json .env ./
 
-COPY api/package*.json ./api/
+COPY api/package*.json api/tsconfig.json ./api/
 
 # Set chmod and Install dependencies
 RUN apk add --no-cache --upgrade bash \
