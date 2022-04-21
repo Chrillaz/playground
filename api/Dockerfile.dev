@@ -3,7 +3,7 @@ FROM debian:buster-slim as wait-for-it
 # Get wait for it script
 RUN apt-get update && apt-get install -y wait-for-it
 
-FROM node:16
+FROM node:lts-alpine3.14
 
 WORKDIR /app
 
@@ -18,7 +18,9 @@ COPY .entrypoint/entrypoint.sh  package*.json tsconfig*.json .env ./
 COPY api/package*.json ./api/
 
 # Set chmod and Install dependencies
-RUN npm install && chmod +x ./entrypoint.sh \
+RUN apk add --no-cache --upgrade bash \
+    && npm install \
+    && chmod +x ./entrypoint.sh \
     && chmod +x ./wait-for-it
 
 EXPOSE ${API_PORT}
