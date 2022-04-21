@@ -16,7 +16,7 @@ export default class TodoController extends Controller<TodoModel> {
 
             const todo = await this.model.create(matchedData(req) as any);
 
-            return this.jsonResponse<typeof todo>(res, 'no_content', todo);
+            return this.jsonResponse<typeof todo>(res, 'ok', todo);
         } catch (error) {
             next(error);
         }

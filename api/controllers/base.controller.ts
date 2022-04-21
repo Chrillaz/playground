@@ -2,22 +2,21 @@ import { Exception } from '@models/exception.model';
 import { Request, Response } from 'express';
 import { ValidationChain, validationResult } from 'express-validator';
 
-export default abstract class Controller<T> {
+enum ResponseCodes {
+    ok = 200,
+    created = 201,
+    accepted = 202,
+    non_authoritative_information = 203,
+    no_content = 204,
+}
 
-    static STATUS_CODES = {
-        ok: 200,
-        created: 201,
-        no_content: 204,
-        bad_request: 400,
-        unauthorized: 401,
-        not_found: 404
-    }
+export default abstract class Controller<T> {
 
     constructor(protected readonly model: T) {}
 
-    jsonResponse<T>(res: Response<T>, status: keyof typeof Controller.STATUS_CODES, data: T) {
+    jsonResponse<T>(res: Response<T>, status: keyof typeof ResponseCodes, data: T) {
 
-        return res.status(Controller.STATUS_CODES[status]).json(data);
+        return res.status(ResponseCodes[status]).json(data);
     }
 
     async validateRequest (req: Request, validations: ValidationChain[]) {
