@@ -1,7 +1,7 @@
+import TodoController from '@controllers/todo.controller';
+import TodoModel from '@models/todo.model';
 import { PrismaClient } from '@prisma/client';
 import { Router } from 'express';
-import TodoController from '../controllers/todo.controller';
-import TodoModel from '../models/todo.model';
 
 export const todoRouter = (prisma: PrismaClient) => {
 

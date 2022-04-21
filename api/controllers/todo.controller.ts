@@ -1,6 +1,6 @@
+import TodoModel from '@models/todo.model';
 import { Request, Response } from 'express';
 import { body, matchedData, param } from 'express-validator';
-import TodoModel from '../models/todo.model';
 import Controller from './base.controller';
 
 export default class TodoController extends Controller<TodoModel> {

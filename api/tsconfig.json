@@ -1,22 +1,22 @@
 {
     "extends": "../tsconfig.base.json",
-    "baseUrl": ".",
     "compilerOptions": {
+        "baseUrl": ".",
+        "lib": [
+            "ESNext"
+        ],
         "module": "commonjs",
-    },
-    "lib": [
-        "ESNext"
-    ],
-    "paths": {
-        "@controllers/*": [
-            "controllers/*"
-        ],
-        "@models": [
-            "models/*"
-        ],
-        "@routes/*": [
-            "routes/*"
-        ]
+        "paths": {
+            "@controllers/*": [
+                "controllers/*"
+            ],
+            "@models/*": [
+                "models/*"
+            ],
+            "@routes/*": [
+                "routes/*"
+            ]
+        },
     },
     "includes": [
         "**/*.ts"
