@@ -1,3 +1,4 @@
+import { Exception } from '@models/exception.model';
 import { Request, Response } from 'express';
 import { ValidationChain, validationResult } from 'express-validator';
 
@@ -19,12 +20,7 @@ export default abstract class Controller<T> {
         return res.status(Controller.STATUS_CODES[status]).json(data);
     }
 
-    errorResponse (res: Response, status: keyof typeof Controller.STATUS_CODES, error: string) {
-
-        return this.jsonResponse<Record<'error' | 'message', string>>(res, status, { error: status, message: error });
-    }
-
-    async validateRequest (req: Request, res: Response, validations: ValidationChain[]) {
+    async validateRequest (req: Request, validations: ValidationChain[]) {
 
         await Promise.all(validations.map(validation => validation.run(req)));
         
@@ -32,7 +28,7 @@ export default abstract class Controller<T> {
         
         if (!errors.isEmpty()) {
 
-            return this.errorResponse(res, 'bad_request', errors.mapped()?.id?.msg || 'Invalid input.');
+            throw new Exception('bad_request', errors.mapped()?.id?.msg || 'Invalid input.');
         }
     }
 }
