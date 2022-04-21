@@ -37,7 +37,7 @@ services:
     ports:
       - ${API_PORT}:${API_PORT}
     volumes:
-      - ./api:/app/api/
+      - ./api/src:/app/api/src/
       - ./prisma:/app/prisma/
     networks:
       - playground-network

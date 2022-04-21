@@ -1,13 +1,10 @@
 {
-    "compilerOptions": {
-        "allowJs": false
-    },
     "references": [
         {
-            "path": "./api"
+            "path": "api"
         },
         {
-            "path": "./client"
+            "path": "client"
         }
     ],
     "files": []
