@@ -42,7 +42,7 @@
         ],
         "verbose": true,
         "ext": "ts",
-        "exec": "ts-node"
+        "exec": "ts-node -r tsconfig-paths/register"
     },
     "prisma": {
         "seed": "ts-node ../prisma/seed.ts"

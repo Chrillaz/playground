@@ -1,4 +1,4 @@
-import TodoModel from '../models/todo.model';
+import TodoModel from '@models/todo.model';
 import { Request, Response } from 'express';
 import { body, matchedData, param } from 'express-validator';
 import Controller from './base.controller';
