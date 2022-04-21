@@ -9,7 +9,7 @@ enum ResponseCodes {
     unsupported_media_type = 415
 }
 
-export class Exception extends Error {
+export default class Exception extends Error {
 
     protected readonly code: (typeof ResponseCodes)[keyof typeof ResponseCodes];
 

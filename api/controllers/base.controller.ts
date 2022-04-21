@@ -1,4 +1,4 @@
-import { Exception } from '@models/exception.model';
+import Exception from '@models/exception.model';
 import { Request, Response } from 'express';
 import { ValidationChain, validationResult } from 'express-validator';
 
