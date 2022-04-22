@@ -18,6 +18,11 @@ app.use(cors())
 
 routes(app, process.env.API_VERSION);
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Playground listening on port ${PORT}`)
 })
+
+export {
+    app,
+    server
+}
