@@ -2,9 +2,9 @@ import React, { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Loader } from '@components';
 
-const Home = lazy(() => import('@/pages/home'));
+const Home = lazy(() => import('@routes/home'));
 
-function Router() {
+export function Router() {
     
     return(
         <Suspense fallback={<Loader />}>
@@ -13,8 +13,4 @@ function Router() {
             </Routes>
         </Suspense>
     )
-}
-
-export {
-    Router
 }

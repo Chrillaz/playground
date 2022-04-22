@@ -1,12 +1,12 @@
 import React from 'react';
 import { CircularProgress } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/material/styles';
 
-const useStyles = makeStyles({
+const RootWrapper = styled('div')(() => ({
     root: {
         margin: 'auto'
     }
-});
+}));
 
 /**
  * CircularProgrss component aligned auto in flex box.
@@ -15,11 +15,9 @@ const useStyles = makeStyles({
  */
 export const Loader = () => {
 
-    const classes = useStyles();
-
     return(
-        <div className={classes.root}>
+        <RootWrapper>
             <CircularProgress disableShrink />
-        </div>
+        </RootWrapper>
     )
 }
