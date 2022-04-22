@@ -1,44 +1,44 @@
 {
-  "name": "@playground/client",
-  "version": "1.0.0",
-  "main": "dist/index.js",
-  "scripts": {
-    "dev": "webpack-dev-server",
-    "test": "jest"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Chrillaz/playground.git"
-  },
-  "author": "christoffer öhman",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Chrillaz/playground/issues"
-  },
-  "homepage": "https://github.com/Chrillaz/playground#readme",
-  "description": "",
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/react-hooks": "^7.0.2",
-    "@testing-library/user-event": "^14.0.4",
-    "@types/react": "^18.0.1",
-    "@types/react-dom": "^18.0.0",
-    "@types/react-router-dom": "^5.3.3",
-    "eslint-plugin-react": "^7.29.4",
-    "html-webpack-plugin": "^5.5.0",
-    "ts-loader": "^9.2.8",
-    "webpack": "^5.72.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.8.1"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
-    "@mui/material": "^5.6.2",
-    "axios": "^0.26.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-router-dom": "^6.3.0"
-  }
+    "name": "@playground/client",
+    "version": "1.0.0",
+    "main": "dist/index.js",
+    "scripts": {
+        "dev": "webpack-dev-server",
+        "test": "jest --config test/jest.config.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Chrillaz/playground.git"
+    },
+    "author": "christoffer öhman",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Chrillaz/playground/issues"
+    },
+    "homepage": "https://github.com/Chrillaz/playground#readme",
+    "description": "",
+    "devDependencies": {
+        "@testing-library/jest-dom": "^5.16.4",
+        "@testing-library/react": "^13.0.0",
+        "@testing-library/react-hooks": "^7.0.2",
+        "@testing-library/user-event": "^14.0.4",
+        "@types/react": "^18.0.1",
+        "@types/react-dom": "^18.0.0",
+        "@types/react-router-dom": "^5.3.3",
+        "eslint-plugin-react": "^7.29.4",
+        "html-webpack-plugin": "^5.5.0",
+        "ts-loader": "^9.2.8",
+        "webpack": "^5.72.0",
+        "webpack-cli": "^4.9.2",
+        "webpack-dev-server": "^4.8.1"
+    },
+    "dependencies": {
+        "@emotion/react": "^11.9.0",
+        "@emotion/styled": "^11.8.1",
+        "@mui/material": "^5.6.2",
+        "axios": "^0.26.1",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "react-router-dom": "^6.3.0"
+    }
 }

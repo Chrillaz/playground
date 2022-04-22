@@ -10,11 +10,14 @@
     },
     "scripts": {
         "api:dev": "npm run dev --workspace=api",
+        "api:test": "npm test --workspace=api",
         "client:dev": "npm run dev --workspace=client",
+        "client:test": "npm test --workspace=client",
         "start": "npm run client:dev",
         "lint": "eslint --quiet .",
         "format:check": "prettier --check",
-        "format:write": "prettier --write"
+        "format:write": "prettier --write",
+        "test": "jest"
     },
     "author": "christoffer öhman",
     "license": "ISC",
