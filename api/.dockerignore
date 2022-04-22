@@ -3,8 +3,8 @@
 
 Dockerfile*
 
-test/
 **/*.(test|spec)*
+test/
 
 node_modules
 npm-debug.log*
