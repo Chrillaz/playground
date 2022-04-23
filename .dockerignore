@@ -1,7 +1,2 @@
 .git 
 .env
-
-tsconfig*json
-package*json
-
-prisma

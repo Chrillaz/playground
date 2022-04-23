@@ -41,15 +41,12 @@ services:
     networks:
       - playground-network
 
-  # An entry point to run prisma scripts, ex: migrations
   prisma:
-    container_name: playground_prisma
     build:
       context: .
-      target: base
+      target: prisma
     env_file:
       - .env
-    entrypoint: [ "npx prisma" ]
     networks:
       - playground-network
 
