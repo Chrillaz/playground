@@ -6,7 +6,7 @@ module.exports = {
             tsconfig: '<rootDir>/tsconfig.json'
         }
     },
-    globalSetup: '<rootDir>/test/migrateDatabases.ts',
+    // globalSetup: '<rootDir>/test/migrateDatabases.ts',
     moduleNameMapper: {
         "@controllers/(.*)$": "<rootDir>/src/controllers/$1",
         "@models/(.*)$": "<rootDir>/src/models/$1",
