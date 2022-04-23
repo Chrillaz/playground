@@ -23,6 +23,7 @@ services:
     networks:
       - playground-network
 
+  # Express api server
   api:
     container_name: playground_dev_api
     build:
@@ -40,6 +41,7 @@ services:
     networks:
       - playground-network
 
+  # An entry point to run prisma scripts, ex: migrations
   prisma:
     container_name: playground_prisma
     build:
