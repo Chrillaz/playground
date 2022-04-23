@@ -27,7 +27,6 @@ services:
     container_name: playground_dev_api
     build:
       context: .
-      dockerfile: ./api/Dockerfile
       target: development
     restart: always
     volumes:
@@ -40,8 +39,17 @@ services:
       - ${API_PORT}:${API_PORT}
     networks:
       - playground-network
-    depends_on:
-      - db
+
+  prisma:
+    container_name: playground_prisma
+    build:
+      context: .
+      target: base
+    env_file:
+      - .env
+    entrypoint: [ "npx prisma" ]
+    networks:
+      - playground-network
 
 volumes:
   playground-mysql: 
