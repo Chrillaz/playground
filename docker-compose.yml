@@ -1,8 +1,8 @@
 version: '3.5'
 
 networks:
-  playground-network:
-    name: playground-network
+  backend_network:
+    name: backend_network
     driver: bridge
 
 services:
@@ -12,7 +12,7 @@ services:
     image: mysql:latest
     restart: always
     volumes:
-      - playground-mysql:/var/lib/mysql
+      - mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -21,9 +21,8 @@ services:
     ports:
       - ${MYSQL_PORT}:${MYSQL_PORT}
     networks:
-      - playground-network
+      - backend_network
 
-  # Express api server
   api:
     container_name: playground_dev_api
     build:
@@ -33,13 +32,13 @@ services:
     volumes:
       - ./api:/srv/apps/api/
       - ./prisma:/srv/apps/prisma/
-      - playground-node_modules:/srv/apps/node_modules
+      - node_modules:/srv/apps/node_modules
     env_file:
       - .env
     ports:
       - ${API_PORT}:${API_PORT}
     networks:
-      - playground-network
+      - backend_network
 
   npx:
     build:
@@ -48,8 +47,8 @@ services:
     env_file:
       - .env
     networks:
-      - playground-network
+      - backend_network
 
 volumes:
-  playground-mysql: 
-  playground-node_modules:
+  mysql: 
+  node_modules:
