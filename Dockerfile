@@ -17,7 +17,7 @@ RUN npm install \
 
 COPY . .
 
-# Api server
+# Api server.
 FROM node:lts as development
 
 COPY --from=builder /srv/apps .
@@ -26,7 +26,7 @@ EXPOSE ${API_PORT}
 
 ENTRYPOINT [ "./scripts/start_api_service.sh" ]
 
-# Prisma entrypoint for migrations.
-FROM development as prisma
+# npx entrypoint.
+FROM development as npx
 
-ENTRYPOINT [ "npx prisma" ]
+ENTRYPOINT [ "npx" ]

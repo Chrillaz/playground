@@ -41,10 +41,10 @@ services:
     networks:
       - playground-network
 
-  prisma:
+  npx:
     build:
       context: .
-      target: prisma
+      target: npx
     env_file:
       - .env
     networks:
