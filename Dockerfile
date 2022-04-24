@@ -1,32 +1,33 @@
+# Builder
 FROM node:lts as builder
 
-WORKDIR /srv/apps
+WORKDIR /usr/src
 
-RUN apt-get update \
-    && apt-get install -y wait-for-it
-
-COPY .entrypoint/node ./scripts/
+COPY package*json .
 
 COPY api/package*json ./api/
 
-COPY package*json tsconfig*json ./
+COPY client/package*json ./client/
 
-RUN npm install \ 
-    && cp /usr/bin/wait-for-it ./scripts/ \
-    && chmod +x ./scripts/* 
+RUN npm install \
+    && npm cache clean --force
 
 COPY . .
 
-# Api server.
+# App development Service
 FROM node:lts as development
 
-COPY --from=builder /srv/apps .
+ENV NODE_ENV=development
 
-EXPOSE ${API_PORT}
+WORKDIR /usr/src
 
-ENTRYPOINT [ "./scripts/start_api_service.sh" ]
+COPY --from=builder /usr/src .
 
-# npx entrypoint.
-FROM development as npx
+RUN apt-get update \
+    && apt-get install -y wait-for-it \
+    && chmod +x /usr/bin/wait-for-it \
+    && chmod +x /usr/src/.entrypoint/*
 
-ENTRYPOINT [ "npx" ]
+EXPOSE 80
+
+ENTRYPOINT [ "./.entrypoint/app_entrypoint.sh" ]

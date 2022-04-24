@@ -18,12 +18,17 @@ API_VERSION=v1
 CLIENT_PORT=3000
 ```
 
-### Start mysql and run api server
+## Install dependencies
+```bash
+npm install
+```
+
+### Start mysql and build app service
 ```bash 
 docker compose up -d --build
 ```
 
-### Migrate db
+### Interact with Prisma CLI
 ```bash
-docker compose run --rm npm prisma migrate dev
+docker compose run --entrypoint npx --rm prisma prisma migrate dev
 ```
