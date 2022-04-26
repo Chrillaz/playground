@@ -2,6 +2,8 @@
 
 ### Envs
 ```
+NODE_ENV=development
+
 ## Database
 MYSQL_ROOT_PASSWORD
 MYSQL_DATABASE
@@ -18,17 +20,12 @@ API_VERSION=v1
 CLIENT_PORT=3000
 ```
 
-## Install dependencies
+### Build containers
 ```bash
-npm install
+docker compose build
 ```
 
-### Start mysql and build app service
+### Start containers
 ```bash 
-docker compose up -d --build
-```
-
-### Interact with Prisma CLI
-```bash
-docker compose run --entrypoint npx --rm prisma prisma migrate dev
+docker compose up -d
 ```
