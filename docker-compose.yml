@@ -31,7 +31,7 @@ services:
     restart: always
     volumes:
       - .:/usr/src/
-      - modules:/usr/src/node_modules
+      - /node_modules
     env_file:
       - .env
     ports:
@@ -41,5 +41,4 @@ services:
       - playground
 
 volumes:
-  mysql: 
-  modules:
+  mysql:
