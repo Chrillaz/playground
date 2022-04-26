@@ -2,7 +2,7 @@ FROM node:lts as builder
 
 WORKDIR /usr/src
 
-COPY package*json .
+COPY package*json tsconfig*json ./
 
 WORKDIR /usr/src/services/client
 
@@ -10,16 +10,15 @@ COPY services/client/package*json .
 
 WORKDIR /usr/src
 
-RUN npm install \
+RUN npm install typescript@4.6.3 \
+    && npm install --workspace=services/client \
     && npm cache clean --force
-
-COPY package-lock.json tsconfig*json ./
 
 WORKDIR /usr/src/services/client
 
 COPY services/client/ .
 
-FROM node:lts-alpine3.14
+FROM node:lts-alpine3.14 as development
 
 WORKDIR /usr/src
 
