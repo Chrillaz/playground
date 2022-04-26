@@ -5,9 +5,15 @@ WORKDIR /usr/src
 
 COPY package*json .
 
-COPY api/package*json ./api/
+WORKDIR /usr/src/api
 
-COPY client/package*json ./client/
+COPY api/package*json .
+
+WORKDIR /usr/src/client
+
+COPY client/package*.json .
+
+WORKDIR /usr/src
 
 RUN npm install \
     && npm cache clean --force
