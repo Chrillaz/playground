@@ -1,4 +1,4 @@
-import * as bodyParser from 'body-parser';
+import { json, urlencoded } from 'body-parser';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import express from 'express';
@@ -10,9 +10,9 @@ const app = express()
 
 const PORT = process.env.API_PORT
 
-app.use(bodyParser.json())
+app.use(json())
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(urlencoded({ extended: true }))
 
 app.use(cors())
 
@@ -25,4 +25,4 @@ const server = app.listen(PORT, () => {
 export {
     app,
     server
-}
+};

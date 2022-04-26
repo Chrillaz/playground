@@ -23,20 +23,20 @@ services:
     networks:
       - playground
       
-  app:
-    container_name: playground_app
+  api:
+    container_name: playground_dev_api
     build:
       context: .
+      dockerfile: ./services/api/Dockerfile
       target: development
     restart: always
     volumes:
-      - .:/usr/src/
+      - ./services/api:/usr/src/services/api
       - /node_modules
     env_file:
       - .env
     ports:
-      - ${API_PORT}:80
-      - ${CLIENT_PORT}:80
+      - ${API_PORT}:${API_PORT}
     networks:
       - playground
 

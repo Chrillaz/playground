@@ -9,11 +9,11 @@
         "url": "git+https://github.com/Chrillaz/playground.git"
     },
     "scripts": {
-        "api:start": "npm start --workspace=api",
-        "api:dev": "npm run dev --workspace=api",
-        "api:test": "npm test --workspace=api",
-        "client:dev": "npm run dev --workspace=client",
-        "client:test": "npm test --workspace=client",
+        "api:start": "npm start --workspace=services/api",
+        "api:dev": "npm run dev --workspace=services/api",
+        "api:test": "npm test --workspace=services/api",
+        "client:dev": "npm run dev --workspace=services/client",
+        "client:test": "npm test --workspace=services/client",
         "lint": "eslint --quiet .",
         "format:check": "prettier --check",
         "format:write": "prettier --write",
@@ -26,8 +26,8 @@
     },
     "homepage": "https://github.com/Chrillaz/playground#readme",
     "workspaces": [
-        "api",
-        "client"
+        "services/api",
+        "services/client"
     ],
     "devDependencies": {
         "@types/jest": "^27.4.1",
