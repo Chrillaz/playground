@@ -32,13 +32,30 @@ services:
     restart: always
     volumes:
       - ./services/api:/usr/src/services/api
-      - /node_modules
+      - /usr/src/node_modules
     env_file:
       - .env
     ports:
       - ${API_PORT}:${API_PORT}
     networks:
       - playground
+
+  client:
+    container_name: playground_dev_client
+    build:
+      context: .
+      target: development
+      args:
+        - SERVICE=client
+    volumes:
+      - ./services/client:/usr/src/services/client
+      - /usr/src/node_modules
+    env_file:
+      - .env
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+    stdin_open: true
+    command: [ "run", "client:dev" ]
 
 volumes:
   mysql:

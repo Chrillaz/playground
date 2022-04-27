@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
-const dotenv = require("dotenv").config({ path: "../.env" });
+const dotenv = require("dotenv").config({ path: "../../.env" });
 
 const development = process.env.NODE_ENV !== "production";
 
@@ -23,7 +23,7 @@ const entries = () =>
 	);
 
 const appEnvs = Object.keys(dotenv.parsed).reduce((map, key) => {
-	if (key.substring(0, 4).toLowerCase() !== "app_") {
+	if (key.substring(0, 4).toLowerCase() !== "client_") {
 		return map;
 	}
 
@@ -37,7 +37,7 @@ const devServer = {
 	static: resolveAppPath("public"),
 	compress: true,
 	hot: true,
-	port: process.env.APP_PORT,
+	port: process.env.CLIENT_PORT,
 };
 
 const plugins = [

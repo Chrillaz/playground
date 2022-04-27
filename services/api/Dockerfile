@@ -2,7 +2,7 @@ FROM node:lts as builder
 
 WORKDIR /usr/src
 
-COPY package*json tsconfig*json ./
+COPY package*json tsconfig*json .env ./
 
 WORKDIR /usr/src/services/api
 
@@ -38,7 +38,5 @@ WORKDIR /usr/src
 COPY --from=builder /usr/src .
 
 COPY --from=builder /usr/bin/wait-for-it /usr/bin/    
-
-EXPOSE ${API_PORT}
 
 ENTRYPOINT [ "./.entrypoint/app_entrypoint.sh" ]

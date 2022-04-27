@@ -4,7 +4,7 @@ import * as dotenv from 'dotenv';
 import express from 'express';
 import routes from './routes';
 
-dotenv.config({ path: '../.env' });
+dotenv.config({ path: '../../../.env' });
 
 const app = express()
 
