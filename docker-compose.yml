@@ -1,5 +1,3 @@
-version: '3.5'
-
 networks:
   playground:
     name: playground
@@ -8,8 +6,8 @@ networks:
 services:
 
   db:
-    container_name: playground_dev_db
     image: mysql:latest
+    container_name: ${MYSQL_HOST}
     restart: always
     volumes:
       - mysql:/var/lib/mysql
@@ -22,14 +20,12 @@ services:
       - ${MYSQL_PORT}:${MYSQL_PORT}
     networks:
       - playground
-      
+
   api:
-    container_name: playground_dev_api
     build:
       context: .
       dockerfile: ./services/api/Dockerfile
       target: development
-    restart: always
     volumes:
       - ./services/api:/usr/src/services/api
       - /usr/src/node_modules
@@ -41,7 +37,6 @@ services:
       - playground
 
   client:
-    container_name: playground_dev_client
     build:
       context: .
       target: development
