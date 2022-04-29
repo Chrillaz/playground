@@ -23,6 +23,9 @@
             "@routes/*": [
                 "routes/*"
             ],
+            "@services": [
+                "services/index"
+            ],
             "@utilities": [
                 "utilities/index"
             ]

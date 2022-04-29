@@ -3,6 +3,7 @@
         "browser": true
     },
     "extends": [
+        "prettier",
         "plugin:react/recommended"
     ],
     "plugins": [

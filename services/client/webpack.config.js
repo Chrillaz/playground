@@ -65,6 +65,7 @@ const config = {
 			"@components": resolveAppPath('src/components'),
             "@hooks": resolveAppPath('src/hooks'),
             "@routes": resolveAppPath('src/routes'),
+            "@services": resolveAppPath('src/services'),
             "@utilities": resolveAppPath('src/utilities')
 		},
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
