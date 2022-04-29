@@ -17,8 +17,14 @@
             "@components": [
                 "components/index"
             ],
+            "@hooks": [
+                "hooks/index"
+            ],
             "@routes/*": [
                 "routes/*"
+            ],
+            "@utilities": [
+                "utilities/index"
             ]
         },
         "rootDir": "src",

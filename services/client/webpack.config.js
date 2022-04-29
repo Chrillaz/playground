@@ -63,7 +63,9 @@ const config = {
 		alias: {
 			"@": resolveAppPath('src'),
 			"@components": resolveAppPath('src/components'),
-            "@routes": resolveAppPath('src/routes')
+            "@hooks": resolveAppPath('src/hooks'),
+            "@routes": resolveAppPath('src/routes'),
+            "@utilities": resolveAppPath('src/utilities')
 		},
 		extensions: [".ts", ".tsx", ".js", ".jsx"],
 	},

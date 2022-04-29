@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '../.env' });
+require('dotenv').config({ path: '../../.env' });
 
 module.exports = {
     rootDir: '../',
@@ -10,12 +10,14 @@ module.exports = {
     },
     moduleNameMapper: {
         "@components": "<rootDir>/src/components/index.ts",
-        "@routes/(.*)$": "<rootDir>/src/routes/$1"
+        "@hooks": "<rootDir>/src/hooks/index.ts",
+        "@routes/(.*)$": "<rootDir>/src/routes/$1",
+        "@utilities": "<rootDir>/src/utilities/index.ts"
     },
     setupFilesAfterEnv: ['<rootDir>/test/setup.js'],
     testEnvironment: 'jsdom',
     testMatch: ['<rootDir>/src/**/*.(test|spec).+(ts|tsx)'],
-    testURL: 'http://localhost:' + process.env.APP_PORT,
+    testURL: 'http://localhost:' + process.env.CLIENT_PORT,
     transform: {
         '^.+\\.(ts|tsx)?$': 'ts-jest'
     }
