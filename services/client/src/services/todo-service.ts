@@ -10,9 +10,12 @@ export interface ITodo {
 
 const service = 'todos';
 
-export const createTodo = async (payload: ITodo) => {
+export const createTodo = async (payload: ITodo, alive: boolean = false) => {
 
-    const [error, todo] = await httpHandle<ITodo>(api.post(service, payload));
+    const [error, todo] = await httpHandle<ITodo>(
+        api.post(service, payload),
+        { alive }
+    );
 
     if (error) {
 
@@ -23,9 +26,12 @@ export const createTodo = async (payload: ITodo) => {
     return todo;
 }
 
-export const getTodos = async () => {
+export const getTodos = async (alive: boolean = false) => {
 
-    const [error, todos] = await httpHandle<ITodo[]>(api.get(service));
+    const [error, todos] = await httpHandle<ITodo[]>(
+        api.get(service),
+        { alive }
+    );
 
     if (error) {
 
@@ -36,22 +42,12 @@ export const getTodos = async () => {
     return todos;
 }
 
-export const getTodo = async (id: string) => {
+export const getTodo = async (id: string, alive: boolean = false) => {
 
-    const [error, todo] = await httpHandle<ITodo>(api.get(`${service}/${id}`));
-
-    if (error) {
-
-        console.log(error);
-        return;
-    }
-
-    return todo;
-}
-
-export const updateTodo = async (payload: ITodo & { id: string }) => {
-
-    const [error, todo] = await httpHandle<ITodo>(api.put(`${service}/${payload.id}`, payload));
+    const [error, todo] = await httpHandle<ITodo>(
+        api.get(`${service}/${id}`),
+        { alive }
+    );
 
     if (error) {
 
@@ -62,9 +58,28 @@ export const updateTodo = async (payload: ITodo & { id: string }) => {
     return todo;
 }
 
-export const deleteTodo = async (id: string) => {
+export const updateTodo = async (payload: ITodo & { id: string }, alive: boolean = false) => {
 
-    const [error, todo] = await httpHandle<boolean>(api.delete(`${service}/${id}`));
+    const [error, todo] = await httpHandle<ITodo>(
+        api.put(`${service}/${payload.id}`, payload),
+        { alive }
+    );
+
+    if (error) {
+
+        console.log(error);
+        return;
+    }
+
+    return todo;
+}
+
+export const deleteTodo = async (id: string, alive: boolean = false) => {
+
+    const [error, todo] = await httpHandle<boolean>(
+        api.delete(`${service}/${id}`),
+        { alive }
+    );
 
     if (error) {
 
