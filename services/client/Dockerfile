@@ -1,24 +1,22 @@
 FROM node:lts as builder
 
-ARG SERVICE
-
 WORKDIR /usr/src
 
 COPY package*json tsconfig*json .env ./
 
-WORKDIR /usr/src/services/${SERVICE}
+WORKDIR /usr/src/services/client
 
-COPY services/${SERVICE}/package*json .
+COPY services/client/package*json .
 
 WORKDIR /usr/src
 
 RUN npm install typescript@4.6.3 \
-    && npm install --workspace=services/${SERVICE} \
+    && npm install --workspace=services/client \
     && npm cache clean --force
 
-WORKDIR /usr/src/services/${SERVICE}
+WORKDIR /usr/src/services/client
 
-COPY services/${SERVICE}/ .
+COPY services/client/ .
 
 WORKDIR /usr/src
 

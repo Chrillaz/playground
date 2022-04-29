@@ -39,9 +39,8 @@ services:
   client:
     build:
       context: .
+      dockerfile: ./services/client/Dockerfile
       target: development
-      args:
-        - SERVICE=client
     volumes:
       - ./services/client:/usr/src/services/client
       - /usr/src/node_modules
