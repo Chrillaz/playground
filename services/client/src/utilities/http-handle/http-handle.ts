@@ -1,23 +1,35 @@
-import { AxiosResponse } from "axios"
+import axios, { AxiosResponse } from "axios"
+
+interface IOptions {
+    errorMessage?: string;
+    alive?: boolean;
+}
 
 /**
  * 
- * @param promise 
- * @param defaultError 
+ * @param request Promise<AxiosResponse<T>>
+ * @param options IOptions 
  * @returns Promise [error, data]
  */
 export const httpHandle = async <T>(
-    promise: Promise<AxiosResponse<T>>,
-    defaultError: any = 'rejected'
+    request: Promise<AxiosResponse<T>>,
+    options?: IOptions
 ): Promise<T[] | [any, T]> => {
 
     try {
 
-        const { data } = await promise;
+        if (options && !options.alive) {
+
+            throw new axios.Cancel('Canceled on unmounted component.');
+        }
+
+        const { data } = await request;
 
         return [undefined, data];
     } catch (error) {
 
-        return Promise.resolve<[any, T]>([error || defaultError, undefined])
+        const errorMessage = options?.errorMessage || 'rejected';
+
+        return Promise.resolve<[any, T]>([error || errorMessage, undefined])
     }
 }
