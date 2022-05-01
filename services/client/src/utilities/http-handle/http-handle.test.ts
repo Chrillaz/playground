@@ -15,7 +15,7 @@ test('it returns data', async () => {
     expect(data).toBe(true);
 })
 
-test('it throws axios Cancel', async () => {
+test('it returns axios Cancel error message', async () => {
 
     const [error, data] = await httpHandle(
         mockRequest(),
